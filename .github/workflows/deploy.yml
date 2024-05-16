@@ -50,7 +50,7 @@ jobs:
 
       # 构建文档
       - name: Build Docs
-        run: hugo --config yangzupan.toml
+        run: hugo --config pannav.toml
       
       # 同步文件到 OSS
       - name: upload files to OSS
@@ -59,6 +59,6 @@ jobs:
             incremental : false
             accessKeyId: ${{ secrets.ALI_ACCESS_KEY_ID }}
             accessKeySecret: ${{ secrets.ALI_ACCESS_KEY_SECRET }}
-            bucket: "yangzupan"
+            bucket: "pannav"
             endpoint: "oss-cn-chengdu.aliyuncs.com" 
             folder: "./public1"
