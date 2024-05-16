@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = '/nav/'
 languageCode = 'zh-CN'
 title = '杨祖攀'
 disableKinds = ['taxonomy', 'term']
