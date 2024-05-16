@@ -1,0 +1,66 @@
+<footer class=" flex-none p-4">
+    <div class="max-w-screen-xl mx-auto flex flex-col gap-4 p-4">
+        <div class=" flex flex-wrap justify-center gap-4 py-4">
+    
+            {{ range .Site.Params.footer.contact.list}}
+            {{ if .isQrCode}}
+            {{ if .id}}
+            <button data-popover-target="{{ .id }}" type="button" title=" {{ .name }}"
+                class="group w-11 h-11  flex justify-center items-center  rounded-full bg-gray-100 dark:bg-gray-800">
+                <i class="{{ .icon }} fa-lg text-gray-700 dark:text-gray-100"></i>
+            </button>
+    
+            <div data-popover id="{{ .id }}" role="tooltip"
+                class="absolute z-10 invisible inline-block w-40 bg-gray-100 divide-y rounded-lg  dark:bg-gray-800">
+                <div class="p-4">
+                    <img src="" data-qrcode-link="{{ .link }}" data-qrcode-img alt="{{ .name }}">
+                </div>
+                <div data-popper-arrow></div>
+            </div>
+            {{ end }}
+            {{ else}}
+            {{ if .link}}
+            <a href="{{ .link }}" aria-label="{{ .name }}"
+                class="group w-11 h-11 flex justify-center items-center rounded-full bg-gray-100 dark:bg-gray-800"
+                target="_blank" rel="noopener noreferrer">
+                <i class="{{ .icon }} fa-lg text-gray-700 dark:text-gray-100"></i>
+            </a>
+            {{ end }}
+            {{ end }}
+            {{ end }}
+            <!-- 夜间模式 -->
+            <button type="button" onclick="switchDarkMode()" aria-label="夜间模式"
+                class="group w-11 h-11 flex justify-center items-center rounded-full bg-gray-100 dark:bg-gray-800">
+                <i class="fa-solid fa-lightbulb text-gray-700 dark:text-gray-100"></i>
+            </button>
+        </div>
+        <hr class="border-gray-300 dark:border-gray-700 ">
+        <!-- 版权 -->
+        <div
+            class="min-h-14 py-2 flex flex-col-reverse sm:flex-col lg:flex-row justify-center items-center gap-2 text-sm lg:text-base">
+            <div class="text-center">
+                Copyright © {{ if ( lt .Site.Params.footer.copyright.startDate now.Year) }}{{
+                .Site.Params.footer.copyright.startDate }} -
+                {{now.Year }}{{ else }}{{ now.Year }}{{ end }} <a href="{{ absURL "" }}"
+                    class="font-semibold hover:text-sky-500">{{ .Site.Title }}</a> All Rights Reserved.
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-2">
+                {{ if .Site.Params.footer.copyright.icp }}
+                <a class="flex flex-row items-center gap-1 hover:text-sky-500" href="https://beian.miit.gov.cn/"
+                    target="_blank">
+                    <img class="w-4 h-4" src="https://cdn.yangzupan.com/images/public/icp.svg" alt="ICP备案">
+                    {{ .Site.Params.footer.copyright.icp }}
+                </a>
+                {{ end }}
+                {{ if .Site.Params.footer.copyright.police.number }}
+                <a class="flex flex-row items-center gap-1 hover:text-sky-500"
+                    href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode={{ .Site.Params.footer.copyright.police.number }} "
+                    target="_blank">
+                    <img class="w-4 h-4" src="https://cdn.yangzupan.com/images/public/police.svg" alt="公安备案">
+                    {{ .Site.Params.footer.copyright.police.text }}
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</footer>

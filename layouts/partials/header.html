@@ -1,0 +1,39 @@
+<header class="w-full flex-none p-4 sticky top-0 z-10" id="header">
+    <div class=" flex flex-row justify-between items-center">
+        <div class="flex flex-row items-center gap-4">
+            <div class="">
+                <!-- logo -->
+                <div class="md:hidden">
+                    <a class="flex items-center justify-between gap-2" href="{{ .Site.Data.site.header.logoLink }}"
+                    title="{{ .Site.Params.siteName }}">
+                    {{ if .Site.Params.header.logoLight }}
+                    <img class="h-8 w-8 rounded-full dark:hidden" src="{{ .Site.Data.site.header.logoLight }}"
+                      alt="{{ .Site.Params.siteName }}" />
+
+                    {{ else if .Site.Params.header.logoDark }}
+                    <img class="hidden h-8 w-8 rounded-full dark:block" src="{{ .Site.Data.site.header.logoDark }}"
+                      alt="{{ .Site.Params.siteName }}" />
+                    {{ else}}
+                    <span class="text-base font-semibold hover:text-sky-500">{{ .Site.Params.subTitle }}</span>
+                    {{ end }}
+                  </a>
+                </div>
+                <div id="max-sidebar-button" class="hidden cursor-pointer">
+                    <svg class="w-5 h-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 512 512">
+                        <path
+                            d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="hidden md:block">菜单</div>
+        </div>
+        <div id="sidebar-button" class="md:hidden cursor-pointer" data-drawer-target="sidebar"
+            data-drawer-toggle="sidebar">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
+                <path
+                    d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+            </svg>
+        </div>
+    </div>
+</header>

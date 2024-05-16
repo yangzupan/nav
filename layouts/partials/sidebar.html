@@ -1,0 +1,74 @@
+<div id="sidebar"
+    class="w-64 h-screen fixed top-0 left-0 z-40 bg-gray-100 dark:bg-gray-800  -translate-x-full md:translate-x-0"
+    data-sidebar-status="max">
+    <div class="h-screen flex flex-col justify-between group/item">
+        <!-- logo -->
+        <div class="flex-none min-h-12 p-4">
+            <div class="min-h-12 flex items-center justify-between ">
+                <div class="">
+                    <a class="flex items-center justify-between gap-2" href="{{ .Site.Data.site.header.logoLink }}"
+                    title="{{ .Site.Params.siteName }}">
+                    {{ if .Site.Params.header.logoLight }}
+                    <img class="h-8 w-8 rounded-full dark:hidden" src="{{ .Site.Data.site.header.logoLight }}"
+                      alt="{{ .Site.Params.siteName }}" />
+
+                    {{ else if .Site.Params.header.logoDark }}
+                    <img class="hidden h-8 w-8 rounded-full dark:block" src="{{ .Site.Data.site.header.logoDark }}"
+                      alt="{{ .Site.Params.siteName }}" />
+                    {{ else}}
+                    <span class="text-xl font-semibold hover:text-sky-500">{{ .Site.Params.subTitle }}</span>
+                    {{ end }}
+                  </a>
+                </div>
+                <div id="min-sidebar-button" class="hidden md:group-hover/item:block cursor-pointer">
+                    <svg class="w-5 h-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- 目录 -->
+        <div class="flex-auto h-full overflow-y-auto p-4">
+            <ul class="space-y-4 font-medium">
+                {{ range .Site.Data.index }}
+                {{ if .list }}
+                <li>
+                    <button type="button"
+                        class="anchor flex items-center justify-between w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        aria-controls="{{ md5 .taxonomy }}" data-collapse-toggle="{{ md5 .taxonomy }}">
+                        
+                        <span class=" text-left  whitespace-nowrap">{{ .taxonomy }}</span>
+                        <svg class="flex-none  w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <ul id="{{ md5 .taxonomy }}" class="hidden py-2 space-y-2">
+                        {{ range .list }}
+                        <li>
+                            <a href="#{{ md5 .term }}" navTo="{{ md5 .term }}" data-drawer-hide="sidebar"
+                                class="anchor flex items-center w-full py-2 text-gray-900 transition duration-75 rounded-lg pl-8 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{
+                                .term }}</a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </li>
+                {{ else }}
+                <li>
+                    <a href="#{{ md5 .taxonomy }}" navTo="{{ md5 .taxonomy }}" data-drawer-hide="sidebar"
+                        class="anchor flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="{{ .icon }}"></i>
+                        <span>{{ .taxonomy }}</span>
+                    </a>
+                </li>
+                {{ end }}
+                {{ end }}
+            </ul>
+        </div>
+        <!-- 底部 -->
+        <div class="flex-none p-4"></div>
+    </div>
+</div>
