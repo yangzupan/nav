@@ -1,4 +1,4 @@
-baseURL = '/nav/'
+baseURL = 'https://nav.yangzupan.com/'
 languageCode = 'zh-CN'
 title = '杨祖攀'
 disableKinds = ['taxonomy', 'term']
